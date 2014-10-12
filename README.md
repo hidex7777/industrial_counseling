@@ -20,6 +20,7 @@
 ```bash
 /-+--/00_i_c_text1 ... （『産業カウンセリング』のディレクトリ） (industrial couseling)
   |   + 00_ic_toc.md ... （『産業カウンセリング』の目次） (table of contents)
+  |   + 12_ic_industrial_organization_psychology.md ... （12章）
   +--/01_tac_text2 ... （『［新版］カウンセリングの話』のディレクトリ） (talk about counseling)
   |   + 00_tac_toc.md ... （『［新版］カウンセリングの話』の目次）
   +--/02_swb ... （『産業カウンセラー試験厳選問題集』のディレクトリ） (selected workbook)
