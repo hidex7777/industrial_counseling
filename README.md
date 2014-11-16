@@ -27,6 +27,7 @@
   |   + 00_ic_toc.md ... （『産業カウンセリング』の目次） (table of contents)
   |   + 01_ic_role_activity_counselor.md ... （1章）
   |   + 02_ic_ethic.md ... （2章）
+  |   + 03_ic_active_listening.md ... （3章）
   |   + 12_ic_industrial_organization_psychology.md ... （12章）
   +--/01_tac_text2 ... （『［新版］カウンセリングの話』のディレクトリ） (talk about counseling)
   |   + 00_tac_toc.md ... （『［新版］カウンセリングの話』の目次）
