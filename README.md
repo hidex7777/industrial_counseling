@@ -29,6 +29,7 @@
   |   + 02_ic_ethic.md ... （2章）
   |   + 03_ic_active_listening.md ... （3章）
   |   + 04_ic_basis_counseling.md ... （4章）
+  |   + 05_ic_counseling_theories.md ... （5章）
   |   + 12_ic_industrial_organization_psychology.md ... （12章）
   +--/01_tac_text2 ... （『［新版］カウンセリングの話』のディレクトリ） (talk about counseling)
   |   + 00_tac_toc.md ... （『［新版］カウンセリングの話』の目次）
