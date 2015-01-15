@@ -1,0 +1,499 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><style>/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+pre code {
+  display: block; padding: 0.5em;
+  color: #333;
+  background: #f8f8ff
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id,
+pre .coffeescript .params,
+pre .scss .preprocessor {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}</style><script>var hljs=new function(){function l(o){return o.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function b(p){for(var o=p.firstChild;o;o=o.nextSibling){if(o.nodeName=="CODE"){return o}if(!(o.nodeType==3&&o.nodeValue.match(/\s+/))){break}}}function h(p,o){return Array.prototype.map.call(p.childNodes,function(q){if(q.nodeType==3){return o?q.nodeValue.replace(/\n/g,""):q.nodeValue}if(q.nodeName=="BR"){return"\n"}return h(q,o)}).join("")}function a(q){var p=(q.className+" "+q.parentNode.className).split(/\s+/);p=p.map(function(r){return r.replace(/^language-/,"")});for(var o=0;o<p.length;o++){if(e[p[o]]||p[o]=="no-highlight"){return p[o]}}}function c(q){var o=[];(function p(r,s){for(var t=r.firstChild;t;t=t.nextSibling){if(t.nodeType==3){s+=t.nodeValue.length}else{if(t.nodeName=="BR"){s+=1}else{if(t.nodeType==1){o.push({event:"start",offset:s,node:t});s=p(t,s);o.push({event:"stop",offset:s,node:t})}}}}return s})(q,0);return o}function j(x,v,w){var p=0;var y="";var r=[];function t(){if(x.length&&v.length){if(x[0].offset!=v[0].offset){return(x[0].offset<v[0].offset)?x:v}else{return v[0].event=="start"?x:v}}else{return x.length?x:v}}function s(A){function z(B){return" "+B.nodeName+'="'+l(B.value)+'"'}return"<"+A.nodeName+Array.prototype.map.call(A.attributes,z).join("")+">"}while(x.length||v.length){var u=t().splice(0,1)[0];y+=l(w.substr(p,u.offset-p));p=u.offset;if(u.event=="start"){y+=s(u.node);r.push(u.node)}else{if(u.event=="stop"){var o,q=r.length;do{q--;o=r[q];y+=("</"+o.nodeName.toLowerCase()+">")}while(o!=u.node);r.splice(q,1);while(q<r.length){y+=s(r[q]);q++}}}}return y+l(w.substr(p))}function f(q){function o(s,r){return RegExp(s,"m"+(q.cI?"i":"")+(r?"g":""))}function p(y,w){if(y.compiled){return}y.compiled=true;var s=[];if(y.k){var r={};function z(A,t){t.split(" ").forEach(function(B){var C=B.split("|");r[C[0]]=[A,C[1]?Number(C[1]):1];s.push(C[0])})}y.lR=o(y.l||hljs.IR,true);if(typeof y.k=="string"){z("keyword",y.k)}else{for(var x in y.k){if(!y.k.hasOwnProperty(x)){continue}z(x,y.k[x])}}y.k=r}if(w){if(y.bWK){y.b="\\b("+s.join("|")+")\\s"}y.bR=o(y.b?y.b:"\\B|\\b");if(!y.e&&!y.eW){y.e="\\B|\\b"}if(y.e){y.eR=o(y.e)}y.tE=y.e||"";if(y.eW&&w.tE){y.tE+=(y.e?"|":"")+w.tE}}if(y.i){y.iR=o(y.i)}if(y.r===undefined){y.r=1}if(!y.c){y.c=[]}for(var v=0;v<y.c.length;v++){if(y.c[v]=="self"){y.c[v]=y}p(y.c[v],y)}if(y.starts){p(y.starts,w)}var u=[];for(var v=0;v<y.c.length;v++){u.push(y.c[v].b)}if(y.tE){u.push(y.tE)}if(y.i){u.push(y.i)}y.t=u.length?o(u.join("|"),true):{exec:function(t){return null}}}p(q)}function d(D,E){function o(r,M){for(var L=0;L<M.c.length;L++){var K=M.c[L].bR.exec(r);if(K&&K.index==0){return M.c[L]}}}function s(K,r){if(K.e&&K.eR.test(r)){return K}if(K.eW){return s(K.parent,r)}}function t(r,K){return K.i&&K.iR.test(r)}function y(L,r){var K=F.cI?r[0].toLowerCase():r[0];return L.k.hasOwnProperty(K)&&L.k[K]}function G(){var K=l(w);if(!A.k){return K}var r="";var N=0;A.lR.lastIndex=0;var L=A.lR.exec(K);while(L){r+=K.substr(N,L.index-N);var M=y(A,L);if(M){v+=M[1];r+='<span class="'+M[0]+'">'+L[0]+"</span>"}else{r+=L[0]}N=A.lR.lastIndex;L=A.lR.exec(K)}return r+K.substr(N)}function z(){if(A.sL&&!e[A.sL]){return l(w)}var r=A.sL?d(A.sL,w):g(w);if(A.r>0){v+=r.keyword_count;B+=r.r}return'<span class="'+r.language+'">'+r.value+"</span>"}function J(){return A.sL!==undefined?z():G()}function I(L,r){var K=L.cN?'<span class="'+L.cN+'">':"";if(L.rB){x+=K;w=""}else{if(L.eB){x+=l(r)+K;w=""}else{x+=K;w=r}}A=Object.create(L,{parent:{value:A}});B+=L.r}function C(K,r){w+=K;if(r===undefined){x+=J();return 0}var L=o(r,A);if(L){x+=J();I(L,r);return L.rB?0:r.length}var M=s(A,r);if(M){if(!(M.rE||M.eE)){w+=r}x+=J();do{if(A.cN){x+="</span>"}A=A.parent}while(A!=M.parent);if(M.eE){x+=l(r)}w="";if(M.starts){I(M.starts,"")}return M.rE?0:r.length}if(t(r,A)){throw"Illegal"}w+=r;return r.length||1}var F=e[D];f(F);var A=F;var w="";var B=0;var v=0;var x="";try{var u,q,p=0;while(true){A.t.lastIndex=p;u=A.t.exec(E);if(!u){break}q=C(E.substr(p,u.index-p),u[0]);p=u.index+q}C(E.substr(p));return{r:B,keyword_count:v,value:x,language:D}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:l(E)}}else{throw H}}}function g(s){var o={keyword_count:0,r:0,value:l(s)};var q=o;for(var p in e){if(!e.hasOwnProperty(p)){continue}var r=d(p,s);r.language=p;if(r.keyword_count+r.r>q.keyword_count+q.r){q=r}if(r.keyword_count+r.r>o.keyword_count+o.r){q=o;o=r}}if(q.language){o.second_best=q}return o}function i(q,p,o){if(p){q=q.replace(/^((<[^>]+>|\t)+)/gm,function(r,v,u,t){return v.replace(/\t/g,p)})}if(o){q=q.replace(/\n/g,"<br>")}return q}function m(r,u,p){var v=h(r,p);var t=a(r);if(t=="no-highlight"){return}var w=t?d(t,v):g(v);t=w.language;var o=c(r);if(o.length){var q=document.createElement("pre");q.innerHTML=w.value;w.value=j(o,c(q),v)}w.value=i(w.value,u,p);var s=r.className;if(!s.match("(\\s|^)(language-)?"+t+"(\\s|$)")){s=s?(s+" "+t):t}r.innerHTML=w.value;r.className=s;r.result={language:t,kw:w.keyword_count,re:w.r};if(w.second_best){r.second_best={language:w.second_best.language,kw:w.second_best.keyword_count,re:w.second_best.r}}}function n(){if(n.called){return}n.called=true;Array.prototype.map.call(document.getElementsByTagName("pre"),b).filter(Boolean).forEach(function(o){m(o,hljs.tabReplace)})}function k(){window.addEventListener("DOMContentLoaded",n,false);window.addEventListener("load",n,false)}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=m;this.initHighlighting=n;this.initHighlightingOnLoad=k;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(q,r){var o={};for(var p in q){o[p]=q[p]}if(r){for(var p in r){o[p]=r[p]}}return o}}();hljs.LANGUAGES.bash=function(a){var g="true false";var e="if then else elif fi for break continue while in do done echo exit return set declare";var c={cN:"variable",b:"\\$[a-zA-Z0-9_#]+"};var b={cN:"variable",b:"\\${([^}]|\\\\})+}"};var h={cN:"string",b:'"',e:'"',i:"\\n",c:[a.BE,c,b],r:0};var d={cN:"string",b:"'",e:"'",c:[{b:"''"}],r:0};var f={cN:"test_condition",b:"",e:"",c:[h,d,c,b],k:{literal:g},r:0};return{k:{keyword:e,literal:g},c:[{cN:"shebang",b:"(#!\\/bin\\/bash)|(#!\\/bin\\/sh)",r:10},c,b,a.HCM,h,d,a.inherit(f,{b:"\\[ ",e:" \\]",r:0}),a.inherit(f,{b:"\\[\\[ ",e:" \\]\\]"})]}}(hljs);hljs.LANGUAGES.cs=function(a){return{k:"abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while ascending descending from get group into join let orderby partial select set value var where yield",c:[{cN:"comment",b:"///",e:"$",rB:true,c:[{cN:"xmlDocTag",b:"///|<!--|-->"},{cN:"xmlDocTag",b:"</?",e:">"}]},a.CLCM,a.CBLCLM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},a.ASM,a.QSM,a.CNM]}}(hljs);hljs.LANGUAGES.ruby=function(e){var a="[a-zA-Z_][a-zA-Z0-9_]*(\\!|\\?)?";var j="[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?";var g={keyword:"and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include"};var c={cN:"yardoctag",b:"@[A-Za-z]+"};var k=[{cN:"comment",b:"#",e:"$",c:[c]},{cN:"comment",b:"^\\=begin",e:"^\\=end",c:[c],r:10},{cN:"comment",b:"^__END__",e:"\\n$"}];var d={cN:"subst",b:"#\\{",e:"}",l:a,k:g};var i=[e.BE,d];var b=[{cN:"string",b:"'",e:"'",c:i,r:0},{cN:"string",b:'"',e:'"',c:i,r:0},{cN:"string",b:"%[qw]?\\(",e:"\\)",c:i},{cN:"string",b:"%[qw]?\\[",e:"\\]",c:i},{cN:"string",b:"%[qw]?{",e:"}",c:i},{cN:"string",b:"%[qw]?<",e:">",c:i,r:10},{cN:"string",b:"%[qw]?/",e:"/",c:i,r:10},{cN:"string",b:"%[qw]?%",e:"%",c:i,r:10},{cN:"string",b:"%[qw]?-",e:"-",c:i,r:10},{cN:"string",b:"%[qw]?\\|",e:"\\|",c:i,r:10}];var h={cN:"function",bWK:true,e:" |$|;",k:"def",c:[{cN:"title",b:j,l:a,k:g},{cN:"params",b:"\\(",e:"\\)",l:a,k:g}].concat(k)};var f=k.concat(b.concat([{cN:"class",bWK:true,e:"$|;",k:"class module",c:[{cN:"title",b:"[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",r:0},{cN:"inheritance",b:"<\\s*",c:[{cN:"parent",b:"("+e.IR+"::)?"+e.IR}]}].concat(k)},h,{cN:"constant",b:"(::)?(\\b[A-Z]\\w*(::)?)+",r:0},{cN:"symbol",b:":",c:b.concat([{b:j}]),r:0},{cN:"symbol",b:a+":",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{cN:"number",b:"\\?\\w"},{cN:"variable",b:"(\\$\\W)|((\\$|\\@\\@?)(\\w+))"},{b:"("+e.RSR+")\\s*",c:k.concat([{cN:"regexp",b:"/",e:"/[a-z]*",i:"\\n",c:[e.BE,d]}]),r:0}]));d.c=f;h.c[1].c=f;return{l:a,k:g,c:f}}(hljs);hljs.LANGUAGES.diff=function(a){return{c:[{cN:"chunk",b:"^\\@\\@ +\\-\\d+,\\d+ +\\+\\d+,\\d+ +\\@\\@$",r:10},{cN:"chunk",b:"^\\*\\*\\* +\\d+,\\d+ +\\*\\*\\*\\*$",r:10},{cN:"chunk",b:"^\\-\\-\\- +\\d+,\\d+ +\\-\\-\\-\\-$",r:10},{cN:"header",b:"Index: ",e:"$"},{cN:"header",b:"=====",e:"=====$"},{cN:"header",b:"^\\-\\-\\-",e:"$"},{cN:"header",b:"^\\*{3} ",e:"$"},{cN:"header",b:"^\\+\\+\\+",e:"$"},{cN:"header",b:"\\*{5}",e:"\\*{5}$"},{cN:"addition",b:"^\\+",e:"$"},{cN:"deletion",b:"^\\-",e:"$"},{cN:"change",b:"^\\!",e:"$"}]}}(hljs);hljs.LANGUAGES.javascript=function(a){return{k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const",literal:"true false null undefined NaN Infinity"},c:[a.ASM,a.QSM,a.CLCM,a.CBLCLM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBLCLM,{cN:"regexp",b:"/",e:"/[gim]*",i:"\\n",c:[{b:"\\\\/"}]},{b:"<",e:">;",sL:"xml"}],r:0},{cN:"function",bWK:true,e:"{",k:"function",c:[{cN:"title",b:"[A-Za-z$_][0-9A-Za-z$_]*"},{cN:"params",b:"\\(",e:"\\)",c:[a.CLCM,a.CBLCLM],i:"[\"'\\(]"}],i:"\\[|%"}]}}(hljs);hljs.LANGUAGES.css=function(a){var b={cN:"function",b:a.IR+"\\(",e:"\\)",c:[a.NM,a.ASM,a.QSM]};return{cI:true,i:"[=/|']",c:[a.CBLCLM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",eE:true,k:"import page media charset",c:[b,a.ASM,a.QSM,a.NM]},{cN:"tag",b:a.IR,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBLCLM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[b,a.NM,a.QSM,a.ASM,a.CBLCLM,{cN:"hexcolor",b:"\\#[0-9A-F]+"},{cN:"important",b:"!important"}]}}]}]}]}}(hljs);hljs.LANGUAGES.xml=function(a){var c="[A-Za-z0-9\\._:-]+";var b={eW:true,c:[{cN:"attribute",b:c,r:0},{b:'="',rB:true,e:'"',c:[{cN:"value",b:'"',eW:true}]},{b:"='",rB:true,e:"'",c:[{cN:"value",b:"'",eW:true}]},{b:"=",c:[{cN:"value",b:"[^\\s/>]+"}]}]};return{cI:true,c:[{cN:"pi",b:"<\\?",e:"\\?>",r:10},{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ />]+"},b]}]}}(hljs);hljs.LANGUAGES.http=function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}}(hljs);hljs.LANGUAGES.java=function(a){return{k:"false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws",c:[{cN:"javadoc",b:"/\\*\\*",e:"\\*/",c:[{cN:"javadoctag",b:"@[A-Za-z]+"}],r:10},a.CLCM,a.CBLCLM,a.ASM,a.QSM,{cN:"class",bWK:true,e:"{",k:"class interface",i:":",c:[{bWK:true,k:"extends implements",r:10},{cN:"title",b:a.UIR}]},a.CNM,{cN:"annotation",b:"@[A-Za-z]+"}]}}(hljs);hljs.LANGUAGES.php=function(a){var e={cN:"variable",b:"\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"};var b=[a.inherit(a.ASM,{i:null}),a.inherit(a.QSM,{i:null}),{cN:"string",b:'b"',e:'"',c:[a.BE]},{cN:"string",b:"b'",e:"'",c:[a.BE]}];var c=[a.BNM,a.CNM];var d={cN:"title",b:a.UIR};return{cI:true,k:"and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return implements parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception php_user_filter default die require __FUNCTION__ enddeclare final try this switch continue endfor endif declare unset true false namespace trait goto instanceof insteadof __DIR__ __NAMESPACE__ __halt_compiler",c:[a.CLCM,a.HCM,{cN:"comment",b:"/\\*",e:"\\*/",c:[{cN:"phpdoc",b:"\\s@[A-Za-z]+"}]},{cN:"comment",eB:true,b:"__halt_compiler.+?;",eW:true},{cN:"string",b:"<<<['\"]?\\w+['\"]?$",e:"^\\w+;",c:[a.BE]},{cN:"preprocessor",b:"<\\?php",r:10},{cN:"preprocessor",b:"\\?>"},e,{cN:"function",bWK:true,e:"{",k:"function",i:"\\$|\\[|%",c:[d,{cN:"params",b:"\\(",e:"\\)",c:["self",e,a.CBLCLM].concat(b).concat(c)}]},{cN:"class",bWK:true,e:"{",k:"class",i:"[:\\(\\$]",c:[{bWK:true,eW:true,k:"extends",c:[d]},d]},{b:"=>"}].concat(b).concat(c)}}(hljs);hljs.LANGUAGES.python=function(a){var f={cN:"prompt",b:"^(>>>|\\.\\.\\.) "};var c=[{cN:"string",b:"(u|b)?r?'''",e:"'''",c:[f],r:10},{cN:"string",b:'(u|b)?r?"""',e:'"""',c:[f],r:10},{cN:"string",b:"(u|r|ur)'",e:"'",c:[a.BE],r:10},{cN:"string",b:'(u|r|ur)"',e:'"',c:[a.BE],r:10},{cN:"string",b:"(b|br)'",e:"'",c:[a.BE]},{cN:"string",b:'(b|br)"',e:'"',c:[a.BE]}].concat([a.ASM,a.QSM]);var e={cN:"title",b:a.UIR};var d={cN:"params",b:"\\(",e:"\\)",c:["self",a.CNM,f].concat(c)};var b={bWK:true,e:":",i:"[${=;\\n]",c:[e,d],r:10};return{k:{keyword:"and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10",built_in:"None True False Ellipsis NotImplemented"},i:"(</|->|\\?)",c:c.concat([f,a.HCM,a.inherit(b,{cN:"function",k:"def"}),a.inherit(b,{cN:"class",k:"class"}),a.CNM,{cN:"decorator",b:"@",e:"$"},{b:"\\b(print|exec)\\("}])}}(hljs);hljs.LANGUAGES.sql=function(a){return{cI:true,c:[{cN:"operator",b:"(begin|start|commit|rollback|savepoint|lock|alter|create|drop|rename|call|delete|do|handler|insert|load|replace|select|truncate|update|set|show|pragma|grant)\\b(?!:)",e:";",eW:true,k:{keyword:"all partial global month current_timestamp using go revoke smallint indicator end-exec disconnect zone with character assertion to add current_user usage input local alter match collate real then rollback get read timestamp session_user not integer bit unique day minute desc insert execute like ilike|2 level decimal drop continue isolation found where constraints domain right national some module transaction relative second connect escape close system_user for deferred section cast current sqlstate allocate intersect deallocate numeric public preserve full goto initially asc no key output collation group by union session both last language constraint column of space foreign deferrable prior connection unknown action commit view or first into float year primary cascaded except restrict set references names table outer open select size are rows from prepare distinct leading create only next inner authorization schema corresponding option declare precision immediate else timezone_minute external varying translation true case exception join hour default double scroll value cursor descriptor values dec fetch procedure delete and false int is describe char as at in varchar null trailing any absolute current_time end grant privileges when cross check write current_date pad begin temporary exec time update catalog user sql date on identity timezone_hour natural whenever interval work order cascade diagnostics nchar having left call do handler load replace truncate start lock show pragma exists number",aggregate:"count sum min max avg"},c:[{cN:"string",b:"'",e:"'",c:[a.BE,{b:"''"}],r:0},{cN:"string",b:'"',e:'"',c:[a.BE,{b:'""'}],r:0},{cN:"string",b:"`",e:"`",c:[a.BE]},a.CNM]},a.CBLCLM,{cN:"comment",b:"--",e:"$"}]}}(hljs);hljs.LANGUAGES.ini=function(a){return{cI:true,i:"[^\\s]",c:[{cN:"comment",b:";",e:"$"},{cN:"title",b:"^\\[",e:"\\]"},{cN:"setting",b:"^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*",e:"$",c:[{cN:"value",eW:true,k:"on off true false yes no",c:[a.QSM,a.NM]}]}]}}(hljs);hljs.LANGUAGES.perl=function(e){var a="getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when";var d={cN:"subst",b:"[$@]\\{",e:"\\}",k:a,r:10};var b={cN:"variable",b:"\\$\\d"};var i={cN:"variable",b:"[\\$\\%\\@\\*](\\^\\w\\b|#\\w+(\\:\\:\\w+)*|[^\\s\\w{]|{\\w+}|\\w+(\\:\\:\\w*)*)"};var f=[e.BE,d,b,i];var h={b:"->",c:[{b:e.IR},{b:"{",e:"}"}]};var g={cN:"comment",b:"^(__END__|__DATA__)",e:"\\n$",r:5};var c=[b,i,e.HCM,g,{cN:"comment",b:"^\\=\\w",e:"\\=cut",eW:true},h,{cN:"string",b:"q[qwxr]?\\s*\\(",e:"\\)",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\[",e:"\\]",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\{",e:"\\}",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\|",e:"\\|",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\<",e:"\\>",c:f,r:5},{cN:"string",b:"qw\\s+q",e:"q",c:f,r:5},{cN:"string",b:"'",e:"'",c:[e.BE],r:0},{cN:"string",b:'"',e:'"',c:f,r:0},{cN:"string",b:"`",e:"`",c:[e.BE]},{cN:"string",b:"{\\w+}",r:0},{cN:"string",b:"-?\\w+\\s*\\=\\>",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{b:"("+e.RSR+"|\\b(split|return|print|reverse|grep)\\b)\\s*",k:"split return print reverse grep",r:0,c:[e.HCM,g,{cN:"regexp",b:"(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*",r:10},{cN:"regexp",b:"(m|qr)?/",e:"/[a-z]*",c:[e.BE],r:0}]},{cN:"sub",bWK:true,e:"(\\s*\\(.*?\\))?[;{]",k:"sub",r:5},{cN:"operator",b:"-\\w\\b",r:0}];d.c=c;h.c[1].c=c;return{k:a,c:c}}(hljs);hljs.LANGUAGES.json=function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}}(hljs);hljs.LANGUAGES.cpp=function(a){var b={keyword:"false int float while private char catch export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace unsigned long throw volatile static protected bool template mutable if public friend do return goto auto void enum else break new extern using true class asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue wchar_t inline delete alignof char16_t char32_t constexpr decltype noexcept nullptr static_assert thread_local restrict _Bool complex",built_in:"std string cin cout cerr clog stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr"};return{k:b,i:"</",c:[a.CLCM,a.CBLCLM,a.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},a.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:b,r:10,c:["self"]}]}}(hljs);
+</script><script>hljs.initHighlightingOnLoad();</script><title>12_ic_industrial_organization_psychology</title></head><body><h2 id="12">第12章 産業・組織の心理学</h2>
+<h3 id="12-1">12-1 産業・組織の心理学とは</h3>
+<h4 id="12-1-1">12-1-1 産業・組織心理学の定義</h4>
+<h5 id="a">a. 産業・組織の定義</h5>
+<ul>
+<li><strong>産業</strong>とは：自然界から人間にとって必要な「もの」を採りだし〔農・林・漁・（鉱）業などの第1次産業）、それを人間の手で望ましいものに形成、変形し〔（鉱）・エネルギー・製造・建設業などの第2次産業〕、ある場所から他の場所へ移動し、時に応じて貯蔵し（運輸・流通業などの第3次産業）、それらのものやサービスに対して対価を払おうとする人の手に引き渡す（金融・不動産・サービス業、公務などの第3次産業）全過程のこと。</li>
+<li><strong>組織</strong>とは：人が、1人では達成が困難なある目的を追求するために、なすべき仕事の性質を明確に分けて編成し、それぞれを構成員に担わせ（分業）、責任と権限を付与し、ときにそれを委譲することによって、最も効率的かつ効果的に協働できるように相互関係を設定（統制）した社会システムのこと。</li>
+</ul>
+<h6 id="_1">組織の構成の原則：</h6>
+<ol>
+<li>目的共有の原則……目的・目標の規定と共有</li>
+<li>職務専門化の原則……同種の仕事はまとめ、相互に異なる機能を果たす</li>
+<li><strong>権限委譲の原則</strong>……最高の権限保有者の存在とその権限を各職務へ分配</li>
+<li>例外対処の原則……どの職務にも属さない事項の権限は上位者が保持</li>
+<li>権限・責任の対応原則……必要な権限は負担すべき責任に応じて付与される</li>
+<li><strong>命令一元化の原則</strong>……下位者への命令は直属の上司が行う</li>
+<li>管理限界の原則……管理監督する部下は多すぎない</li>
+<li>管理階層短縮の原則……組織階層はできるだけ少ない</li>
+<li>代替可能の原則……職務は能力を有する者なら誰でもそれに就ける</li>
+<li>モティベーションとコミュニケーション維持増進の原則……組織が効果的に機能するよう協働と刀剣への意欲と円滑なコミュニケーションを促進する</li>
+</ol>
+<p><strong>権限委譲の原則</strong>とは：最高の権限保有者の存在とその権限を必要に応じて各職務へ分配（委譲）すること</p>
+<p><strong>命令一元化の原則</strong>とは：下位者への命令は、直属の上司が行うこと</p>
+<h6 id="_2">組織の形態の分類：</h6>
+<ul>
+<li>静態的組織<ul>
+<li>集権的組織<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%A9%E3%82%A4%E3%83%B3%E7%B5%84%E7%B9%94">ライン組織</a>……最上位から最下位までがひとつの指揮系統で結ばれている</li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%B3%E3%83%89%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95">ライン＆スタッフ組織</a>……プロフィット部門（ライン）とノンプロフィット部門（スタッフ＝参謀）</li>
+<li><strong>機能（職能）別</strong>組織……職能別の部門化による組織</li>
+</ul>
+</li>
+<li>分権的組織<ul>
+<li><strong>事業部制</strong>組織……目的別の部門化（製品別・地理別）</li>
+<li>カンパニー組織……各事業部の独立性を重視・社内分社化（ソニー）</li>
+<li>持株会社組織……統括と事業の分割（純粋持株は事業をもたない）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>動態的組織<ul>
+<li>
+<ul>
+<li>マトリクス組織……部門×事業部のマトリクス</li>
+<li><strong>プロジェクト組織</strong>……特定のプロジェクト専門のチームをつくる</li>
+<li><strong>社内ベンチャー組織</strong>……社内において新規事業を行う</li>
+<li>ネットワーク組織……指示命令系統が相互依存型・緩やかな提携関係</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="&quot;機能別組織事業部別組織&quot;" src="file://C:\Users\hideo64temp\dev\industrial_counseling\00_ic_text1/../assets/org_functional.gif" />
+<img alt="&quot;マトリクス組織&quot;" src="file://C:\Users\hideo64temp\dev\industrial_counseling\00_ic_text1/../assets/org_matrix.gif" /></p>
+<p>※<a href="http://homepage3.nifty.com/osumi/prof/soshiki/mokuji.html">経営組織論入門</a></p>
+<h5 id="b">b. 産業・組織心理学の定義</h5>
+<h4 id="12-1-2">12-1-2 産業・組織心理学の原点</h4>
+<h5 id="a_1">a. 科学的管理法</h5>
+<p>テイラー：「人間は合理的に経済利益を追求する経済人」と考え、「作業標準（課業）」という出来高制度で作業意欲を刺激しようとした。→動機づけに「高賃金収入の獲得」が必要とした。</p>
+<h5 id="b_1">b. 官僚制組織</h5>
+<ul>
+<li>ウェーバー：定められた規則などの合理的・合法的な権威による組織である近代官僚制組織が「技術的に考えうる最も能率的な組織形態」であるとした</li>
+<li>他の社会学者が指摘した逆機能：手段である規則が目的化・前例主義や事なかれ主義（責任回避）・<strong>セクショナリズムや権威主義</strong>の横行・文書の氾濫・決定の遅れ</li>
+</ul>
+<h5 id="c">c. 人間関係論（ホーソン実験）</h5>
+<ul>
+<li><strong>アクション・リサーチ</strong>：問題を科学的に解決するためのひとつのアプローチ。実験のための実験に終始するのではなく、実験には研究者、実務家、時にはクライエントにも参加してもらい、それらの協働により問題解決を行っていく。</li>
+<li><strong>メイヨー</strong>（Mayo, G. E.）、<strong>レスリスバーガー</strong>（Roethlisberger, F. J.）らの<strong>人間関係論</strong>：組織で働く人間は、<strong>社会的（相互関係的）な存在</strong>であり、その<strong>行動は非公式集団の規範によって規制</strong>され、物理的・経済的条件以外に<strong>感情的側面によって動機づけ</strong>られる（社会的動機づけ）。</li>
+<li>ポイント：テイラーが科学的管理法で経済的欲求を満たすことで動機づけをしたのに対して、職場の人間関係を改善し社会的欲求を満足させることで動機づけを論じたのがレスリスバーガー。</li>
+<li>→<strong>新人間関係学派</strong>：人間は本来持っている<strong>能力を最大限に発揮</strong>することを望んでおり、そのためには<strong>組織の意思決定に参加</strong>できることが必要であるとした。<ul>
+<li><strong>アージリス</strong>（Argyris, C.）『組織学習』：自己実現のための概念モデル</li>
+<li><strong>マグレガー</strong>（McGregor, D.）『企業の人間的側面』：X理論とY理論</li>
+<li><strong>リッカート</strong>（Likert, R.）『経営と行動科学』：システムIV理論（システム4＝民主主義型＝｛課題志向＜人間関係志向｝がもっとも実績が高い）</li>
+</ul>
+</li>
+</ul>
+<p>※<a href="http://jibun3.jugem.jp/?eid=8">産業における組織と心理学概説</a>
+※<a href="http://www.soumunomori.com/column/article/atc-11541/">マグレガーとアージリスの人間観とは</a></p>
+<h3 id="12-2">12-2 産業・組織で働く人の行動</h3>
+<h4 id="12-2-1">12-2-1 役割としての行動</h4>
+<h5 id="a_2">a. 公的役割行動と非公的行動</h5>
+<ol>
+<li>公的役割行動</li>
+<li>非公的行動との関係<ul>
+<li>組織で働く人々は、人間である以上、その公的役割とは直接関係しない非公的（インフォーマル）な行動もしている</li>
+</ul>
+</li>
+</ol>
+<h5 id="b_2">b. リーダーシップとフォロワーシップ</h5>
+<ol>
+<li>リーダーシップ論<ul>
+<li><strong>リーダーシップ（統率力）</strong>とは：リーダーが、集団の目標達成に向けて、フォロワーに対して<strong>影響力</strong>を及ぼすこと</li>
+<li><strong>ホワイトとリピット</strong>（White, R. &amp; Lippit, R.）の実験：<ul>
+<li>専制的リーダー：<strong>仕事の量は多い</strong>が、<strong>敵対的行動・不平不満・依存的行動が多い</strong></li>
+<li>民主的リーダー：仕事の量は多くないが、独創性・仲間意識・友好的発言・満足度が高い</li>
+<li>自由放任的リーダー：仕事の量質とも良くない・遊びが多い・まとまりがない・白けている</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>フォロワーシップ論</li>
+</ol>
+<h4 id="12-2-2">12-2-2 問題解決の行動</h4>
+<h5 id="a_3">a. 問題解決行動</h5>
+<h5 id="b_3">b. 意思決定行動</h5>
+<p>理想的には<strong>規範主義モデル</strong>（完全情報下での非限定合理性による決定）だが、これは不可能（これを「総覧的決定モデル」「最大化モデル」とよんでリンドブロムやサイモンは批判した）。よって<strong>満足主義モデル</strong>（努力のコストと決定の質とのバランスで満足水準を求める; サイモンのsatisficing）や<strong>増分主義モデル</strong>（不完全情報下で少しでもましになる決定をする; リンドブロムのincrementalism）がとられる。</p>
+<ul>
+<li>cf.<ul>
+<li>山崎由香里, 2013, 「組織における意思決定に対する処方的アプローチの適用可能性」『成蹊大学経済学部論集』vol.44, no.2）</li>
+<li>野口悠紀雄；新村保子；内村広志；巾村和敏, 1977, 「予算における意思決定の分析」『経済分析』（経済企画庁経済研究所）vol.66</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>（略）それに代わるもう1つの考え方は、意思決定者がある代替案をみつけたとき、それがどの程度好ましいものであるかについて彼はある「要求（aspiration）」をもっていると想定することである。彼は、選択に際し要求水準を満たすような代替案がみつかれば、ただちに探索活動をやめ、その代替案を採用する。私はこのような選択様式を「満足化（satisficing）」とよんだのである。このような考え方は、Lewinその他の研究者たちによる、要求水準についての、経験妥当な心理学的理論に基づいている。心理学研究が明らかにしてきたように、要求水準は静的なものではなく、変化する経験に相伴うかたちで上昇したり下降したりする傾向をもっているのである。多くの良い代替案をもたらしてくれる順境のときには、要求水準は上昇し、逆境のときには要求水準は下降する。</p>
+<p>もしも探索費用をも考慮に入れたうえで要求水準に動的に適応するような選択をすれば、それは最適な選択と同値になるだろうということは、長期の均衡ではありうることである。しかし探索と満足化の理論について重要な点は、不可能なこと――最適化の手続きを実行すること――をせずに、妥当と思われる計算量ときわめて不完全な情報のもとで、選択が実際にどのように行われるかを示したことなのである。（Simon, H. A., 1979, "Rational Decision Making in Business Organizations", <em>The American Economic Review</em>, vol.69, no.4. = 「企業組織における合理的意思決定」『システムの科学　第3版』）</p>
+</blockquote>
+<h4 id="12-2-3">12-2-3 人間の判断の偏った傾向（バイアス）</h4>
+<h5 id="a_4">a. 個人の判断バイアス（偏った傾向）</h5>
+<ol>
+<li>認知的不協和の理論<ul>
+<li><strong>フェスティンガー</strong>（Festinger, L.）の<strong>認知的不協和の理論</strong>（cognitive dissonance）：矛盾する認知を同時に抱えた場合、その不安定（不協和）な状態を解消するために、態度や行動を変更しようとする。</li>
+</ul>
+</li>
+<li>確証バイアス</li>
+<li>正常性バイアス</li>
+<li>合意推測バイアス</li>
+<li>紋切り型バイアス（ステレオタイプ）</li>
+</ol>
+<h5 id="b_4">b. 集団における判断のバイアス</h5>
+<ol>
+<li>集団の魅力の要素</li>
+<li>同調バイアス</li>
+<li>社会的手抜き</li>
+<li>リスキーシフトとコーシャスシフト（集団的浅慮）</li>
+<li>役割バイアス（ミルグラムやジンバルドの実験）</li>
+</ol>
+<h3 id="12-3">12-3 働く人の意欲と意識</h3>
+<h4 id="12-3-1">12-3-1 働く意欲はどこから</h4>
+<h5 id="a_5">a. 人間の欲求から考える：欲求内容論</h5>
+<ol>
+<li>マズローの欲求階層理論（Maslow, A. H., 1954）<ul>
+<li>マズローは「人間は本来旺盛な労働意欲をもつ」と考えた。</li>
+<li>マズロー理論は実証されず。そこで<strong>アルダーファ</strong>（Alderfer, C. P.）が修正・整理。「生存欲求」「関係欲求」「成長欲求」＝<strong>ERG理論</strong>。エビデンスあり。……【ポイント】2つ以上が同時に働くことはあるが、<strong>重なり合わない</strong>。</li>
+</ul>
+</li>
+<li>マグレガーのX理論Y理論（McGregor, D., 1960）<ul>
+<li>旧来の考え方がX理論、望ましい考え方がY理論</li>
+<li>Y理論： 働くことは人間の本性であり、条件しだいで満足感の源になる</li>
+</ul>
+</li>
+<li>マクレランドの達成動機理論（McClelland, D. C., 1961）</li>
+</ol>
+<p>Hierarchy of needs：覚え方（下から）<strong>生理安全所承実</strong>（せいりあんぜんしょしょうじつ）……ちなみに「愛」は「所属」</p>
+<h5 id="b_5">b. 欲求から行動へのメカニズムから考える：欲求メカニズム論</h5>
+<ol>
+<li>内発的動機づけ・外発的動機づけ理論<ul>
+<li><strong>マーレイ</strong>（Murray, E. J.）が分類：「外発的動機づけ」「内発的動機づけ」</li>
+</ul>
+</li>
+<li>強化による学習理論</li>
+<li>公正理論</li>
+<li>期待価値モデル</li>
+</ol>
+<h5 id="c_1">c. 規定要因論</h5>
+<ol>
+<li><strong>ハーズバーグ</strong>の2要因説（Herzberg, F., 1966）<ul>
+<li><strong>動機づけ要因</strong>（満足の要因）：十分充足されれば満足感を増大させるが、充足されなくても満足感が減るだけで、不満足感が増加しない</li>
+<li><strong>衛生要因</strong>（不満足の要因）：十分充足されても不満足感が減るだけで、満足感が増加するわけではない</li>
+</ul>
+</li>
+<li>職務特性論</li>
+</ol>
+<h5 id="d">d. 仕事意欲向上（動機づけ）策</h5>
+<ol>
+<li>外発的動機づけ策<ul>
+<li>「報酬」、すなわち「終身雇用」「年功賃金」から「能力主義」「成果主義」、「報奨制度」「提案制度」など。</li>
+</ul>
+</li>
+<li>内発的動機づけ策<ol>
+<li><strong>目標による管理</strong><ul>
+<li><strong>ドラッカー</strong>の<strong>自己統制を通じての目標による管理</strong>（Management by Objectives through Self Control）：仕事の目標を組織から従業員に一方的・強制的に押しつけるのではなく、組織の側の要求（目的）と従業員個人の要求（目的）を<strong>マッチング</strong>させ<strong>自己管理で遂行</strong>させることによって、個人の内発的動機づけを促進し、組織目標の達成をねらう。</li>
+</ul>
+</li>
+<li>キャリア開発プログラム（career development program: CDP）</li>
+<li>メンタリング（mentoring）</li>
+<li>コーチング（coaching）<ul>
+<li><strong>コーチング</strong>（coaching）：従業員に<strong>潜在的な能力</strong>に気づかせ、それを問題解決の戦略や戦術に結びつけ、組織のなかでより効果的に行動できるよう支援する。積極的傾聴や<strong>質問</strong>などによって、従業員の自発的な気づきを促進し、内発的動機づけを図る。</li>
+</ul>
+</li>
+<li>小集団活動<ul>
+<li></li>
+</ul>
+</li>
+<li>自己管理型作業システム</li>
+</ol>
+</li>
+</ol>
+<p>（2）<strong>CDP</strong>：企業が長期的な人的資源管理の観点から、従業員個人に期待する価値と、その個人が自身のキャリア形成で目指す価値とを調和させるために、組織的、計画的、継続的に支援する。</p>
+<p>（3）<strong>メンタリング</strong>（mentoring）：上位の指導・支援者が、業務等に未熟な従業員に対して長期的にキャリア形成と心理・社会的側面での支援を行う。</p>
+<h4 id="12-3-2">12-3-2 働く人の意識のさまざま</h4>
+<h5 id="a_6">a. 個人の意識の次元</h5>
+<h5 id="b_6">b. 調査データでみる働く人の意識</h5>
+<ol>
+<li>働く目的は</li>
+<li>働く意欲は</li>
+<li>職場の上司・部下のコミュニケーションは</li>
+<li>新入社員のキャリア意識は</li>
+</ol>
+<h3 id="12-4">12-4 働く人をめぐる環境</h3>
+<h4 id="12-4-1">12-4-1 現代日本における働く環境の問題</h4>
+<p>東京商工会議所（2009）<strong>「中小企業経営者のための社会的責任（CSR）対応チェックシート」</strong>の第7項：従業員の心身の健康維持、十分な能力発揮によるモティベーション向上、差別や嫌がらせ禁止による働きやすい職場環境づくりの推奨。</p>
+<h4 id="12-4-2">12-4-2 人間性を重視する労働</h4>
+<h5 id="a-qwl">a. 「労働の人間化・QWL」から「ディーセント・ワーク」へ</h5>
+<p>ILO総会（1975年）<strong>「労働をより人間的にすること」</strong> → （1999年）<strong>「ディーセント・ワーク」</strong>（decent work）の推進 → 厚生労働省「働きがいのある人間らしい仕事」</p>
+<h5 id="b-work-life-balance">b. ワーク・ライフ・バランス（work life balance）</h5>
+<p>内閣官房（2007年）<strong>「仕事と生活の調和（ワーク・ライフ・バランス）憲章」</strong>および「仕事と生活の調和増進のための行動指針」：国民一人ひとりがやりがいや充実感を感じながら働き、仕事上の責任を果たすとともに、家庭や地域生活などにおいても、子育て期、中高年期といった人生の各段階に応じて多様な生き方が選択・実現できる社会を目指す。</p>
+<h5 id="c-diversity-and-inclusion">c. ダイバーシティとインクルージョン（diversity and Inclusion: 多様性の受容）</h5>
+<p>外面の属性・内面の属性にかかわらずに（<strong>ダイバーシティ</strong>）、インクルージョンすることが求められているが、<strong>ポジティブ・アクション</strong>（積極的差別是正措置）の多くは女性や外国人を社員として雇用し、従業員の構成を性別や人種の点で多様化するにとどまっている。</p>
+<h4 id="12-4-3">12-4-3 人間性を重視した職場環境条件</h4>
+<h5 id="a_7">a. 仕事自体に備えるべき条件</h5>
+<h5 id="b_7">b. 組織運営として備えるべき条件</h5>
+<h5 id="c_2">c. 労働条件として基本的に備えるべき条件</h5>
+<h4 id="12-4-4">12-4-4 産業カウンセラーの働く環境へのかかわり</h4>
+<h5 id="a_8">a. コミュニティ心理学から学ぶ</h5>
+<ul>
+<li>問題を抱えた個人に対する責任は、多様な専門家と組織の管理者などの<strong>非専門家</strong>的協力者とが連携したネットワーク（コミュニティ）で負う</li>
+<li>問題の疾病性（illness）ではなく事例性（caseness）を重視</li>
+<li>弱い面の修復よりは強い面を支え強化する<strong>成長モデル</strong>を志向</li>
+<li>待つのではなく生活している場に出ていく</li>
+</ul>
+<p><strong>コミュニティ・アプローチ</strong>の<strong>介入</strong>のプロセス：</p>
+<ol>
+<li>問題の気づき</li>
+<li>介入計画の立案</li>
+<li>介入の実行</li>
+<li>結果の評価</li>
+<li>理論化</li>
+</ol>
+<h5 id="b_8">b. 産業・組織にかかわる産業カウンセラーの役割</h5>
+<ol>
+<li>コンサルタント</li>
+<li>コーディネーター（オーガナイザー）</li>
+<li>ファシリテーター（またはインストラクター）</li>
+</ol>
+<p><strong>コンサルタント</strong>：問題を抱えた人の問題解決に責任をもつ組織の担当者などに対して、その効果的な解決に必要な専門的な知識や技術を提供する役割。</p>
+<p><strong>コーディネーター（オーガナイザー）</strong>：関係する人々や機関との関係を調整したり、新たに構築する役割。</p>
+<p><strong>ファシリテーター（インストラクター）</strong>：問題を抱えた集団や組織に対して直接的に働きかける役割。</p></body></html>
