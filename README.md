@@ -38,6 +38,7 @@
   |   + 12_ic_industrial_organization_psychology.md ... （12章）
   |   + 13_ic_labor_hr.md ... （13章）
   |   + 14_ic_labor_law.md ... （14章）
+  |   + 15_ic_career_counseling.md ... （15章）
   +--/01_tac_text2 ... （『［新版］カウンセリングの話』のディレクトリ） (talk about counseling)
   |   + 00_tac_toc.md ... （『［新版］カウンセリングの話』の目次）
   +--/02_swb ... （『産業カウンセラー試験厳選問題集』のディレクトリ） (selected workbook)
